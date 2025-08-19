@@ -14,14 +14,12 @@ const OrderForm = ({ onSubmit, cart, total, discount, final }) => {
     state: "",
   });
 
-  // On submit, backend generates a PDF and emails it
-
-  const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+  // Backend API base (Render)
+  const API_BASE = "https://prithivik-crackers.onrender.com";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    // No OTP state to reset
   };
 
   const handleSubmit = async (e) => {
@@ -48,7 +46,10 @@ const OrderForm = ({ onSubmit, cart, total, discount, final }) => {
       quantity: Number(it.quantity || 0),
     }));
     const totals = {
-      totalProducts: (cart || []).reduce((s, it) => s + Number(it.quantity || 0), 0),
+      totalProducts: (cart || []).reduce(
+        (s, it) => s + Number(it.quantity || 0),
+        0
+      ),
       totalPrice: Number(total || 0),
       finalTotal: Number(final || 0),
       total: Number(final || 0),
@@ -64,7 +65,11 @@ const OrderForm = ({ onSubmit, cart, total, discount, final }) => {
       alert("Order PDF emailed!");
     } catch (error) {
       console.error(error);
-      alert(error?.response?.data?.message || error?.message || "Failed to email PDF. Proceeding with order.");
+      alert(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to email PDF. Proceeding with order."
+      );
     }
 
     onSubmit(formValues);
@@ -89,7 +94,10 @@ const OrderForm = ({ onSubmit, cart, total, discount, final }) => {
       quantity: Number(it.quantity || 0),
     }));
     const totals = {
-      totalProducts: (cart || []).reduce((s, it) => s + Number(it.quantity || 0), 0),
+      totalProducts: (cart || []).reduce(
+        (s, it) => s + Number(it.quantity || 0),
+        0
+      ),
       totalPrice: Number(total || 0),
       finalTotal: Number(final || 0),
       total: Number(final || 0),
@@ -112,7 +120,9 @@ const OrderForm = ({ onSubmit, cart, total, discount, final }) => {
       window.URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      alert(err?.response?.data?.message || err?.message || "Failed to download PDF");
+      alert(
+        err?.response?.data?.message || err?.message || "Failed to download PDF"
+      );
     }
   };
 
@@ -143,7 +153,6 @@ const OrderForm = ({ onSubmit, cart, total, discount, final }) => {
             placeholder="Email"
             required
           />
-          {/* No OTP field in simplified flow */}
           <input
             className="border p-3 rounded"
             name="phone"
@@ -186,7 +195,6 @@ const OrderForm = ({ onSubmit, cart, total, discount, final }) => {
           />
 
           <div className="md:col-span-2 flex flex-col md:flex-row gap-4 items-center">
-            {/* Place Order Button */}
             <button
               type="submit"
               className={`w-full py-3 rounded text-white ${
@@ -201,7 +209,6 @@ const OrderForm = ({ onSubmit, cart, total, discount, final }) => {
                 : "Place the Order"}
             </button>
 
-            {/* Download Estimate Button */}
             <button
               type="button"
               onClick={downloadPDF}
@@ -216,7 +223,6 @@ const OrderForm = ({ onSubmit, cart, total, discount, final }) => {
             </button>
           </div>
 
-          {/* Minimum Order Note */}
           <div className="md:col-span-2 text-sm text-gray-500 mt-2">
             * Minimum order value is ₹3000
           </div>

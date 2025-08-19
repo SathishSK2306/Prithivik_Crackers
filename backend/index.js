@@ -396,7 +396,7 @@
 //       cursorY + 30,
 //       { width: contentWidth - 10, align: "right" }
 //     );
-   
+
 //     doc.restore();
 
 //     // Footer
@@ -614,9 +614,6 @@
 //   console.log("Server running on port 5000")
 // );
 
-
-
-
 // server.js
 import express from "express";
 import nodemailer from "nodemailer";
@@ -642,17 +639,17 @@ const transporter = nodemailer.createTransport({
 function generateOrderPDF(doc, from, to, items, orderDetails) {
   // Enhanced color palette matching the image
   const brand = {
-    primary: "#1A3D63",      // Dark blue header/footer
-    secondary: "#4A7FA7",    // Medium blue
-    accent: "#F59E0B",       // Golden orange
-    success: "#10B981",      // Green
-    warning: "#F59E0B",      // Orange
-    light: "#F6FAFD",        // Light blue background
-    lighter: "#F9FAFB",      // Very light gray
-    dark: "#111827",         // Dark text
-    gray: "#6B7280",         // Medium gray
-    border: "#E5E7EB",       // Light border
-    white: "#FFFFFF"         // Pure white
+    primary: "#1A3D63", // Dark blue header/footer
+    secondary: "#4A7FA7", // Medium blue
+    accent: "#F59E0B", // Golden orange
+    success: "#10B981", // Green
+    warning: "#F59E0B", // Orange
+    light: "#F6FAFD", // Light blue background
+    lighter: "#F9FAFB", // Very light gray
+    dark: "#111827", // Dark text
+    gray: "#6B7280", // Medium gray
+    border: "#E5E7EB", // Light border
+    white: "#FFFFFF", // Pure white
   };
 
   const margin = 15; // Very small margin
@@ -671,27 +668,46 @@ function generateOrderPDF(doc, from, to, items, orderDetails) {
       doc.fillColor(fillColor).rect(x, y, width, height).fill();
     }
     if (strokeColor) {
-      doc.strokeColor(strokeColor).lineWidth(1).rect(x, y, width, height).stroke();
+      doc
+        .strokeColor(strokeColor)
+        .lineWidth(1)
+        .rect(x, y, width, height)
+        .stroke();
     }
     doc.restore();
   };
 
   // Header Section - ultra compact design
   const headerHeight = 30; // Very small header
-  drawRect(margin, margin, contentWidth, headerHeight, brand.primary, brand.primary);
-  
+  drawRect(
+    margin,
+    margin,
+    contentWidth,
+    headerHeight,
+    brand.primary,
+    brand.primary
+  );
+
   // Company name and tagline (left side)
   doc.save();
   doc.fillColor(brand.white).fontSize(12).font("Helvetica-Bold"); // Small font
   doc.text("PRITHIVIK CRACKERS", margin + 8, margin + 3); // Minimal spacing
-  
+
   doc.fillColor(brand.white).fontSize(6).font("Helvetica"); // Very small font
   doc.text("Lighting Up Your Celebrations", margin + 8, margin + 15); // Minimal spacing
-  
+
   // Order details (right side)
   doc.fillColor(brand.white).fontSize(6).font("Helvetica"); // Very small font
-  doc.text(`Order ID: ${orderDetails?.orderId || 'N/A'}`, margin + contentWidth - 70, margin + 5); // Minimal spacing
-  doc.text(`Status: ${orderDetails?.status || 'Pending'}`, margin + contentWidth - 70, margin + 12); // Minimal spacing
+  doc.text(
+    `Order ID: ${orderDetails?.orderId || "N/A"}`,
+    margin + contentWidth - 70,
+    margin + 5
+  ); // Minimal spacing
+  doc.text(
+    `Status: ${orderDetails?.status || "Pending"}`,
+    margin + contentWidth - 70,
+    margin + 12
+  ); // Minimal spacing
   doc.restore();
 
   let cursorY = margin + headerHeight + 8; // Minimal spacing
@@ -699,37 +715,52 @@ function generateOrderPDF(doc, from, to, items, orderDetails) {
   // FROM and TO Details Section - ultra compact layout
   const detailsHeight = 45; // Very small height
   const colWidth = (contentWidth - 6) / 2; // Minimal gap
-  
+
   // FROM box (left)
   drawRect(margin, cursorY, colWidth, detailsHeight, brand.white, brand.border);
   doc.save();
   doc.fillColor(brand.dark).fontSize(8).font("Helvetica-Bold"); // Small font
   doc.text("FROM", margin + 4, cursorY + 3); // Minimal spacing
-  
+
   doc.fillColor(brand.dark).fontSize(7).font("Helvetica-Bold"); // Small font
   doc.text(from?.name || "Prithivik Crackers", margin + 4, cursorY + 12); // Minimal spacing
-  
+
   doc.fillColor(brand.gray).fontSize(5).font("Helvetica"); // Very small font
-  doc.text(from?.email || "info@prithivikcrackers.com", margin + 4, cursorY + 20); // Minimal spacing
+  doc.text(
+    from?.email || "info@prithivikcrackers.com",
+    margin + 4,
+    cursorY + 20
+  ); // Minimal spacing
   doc.text(from?.phone || "+91-9876543210", margin + 4, cursorY + 26); // Minimal spacing
   doc.text(from?.address || "Sivakasi, Tamil Nadu", margin + 4, cursorY + 32); // Minimal spacing
   doc.text("India", margin + 4, cursorY + 38); // Minimal spacing
   doc.restore();
 
   // TO box (right)
-  drawRect(margin + colWidth + 6, cursorY, colWidth, detailsHeight, brand.white, brand.border); // Minimal gap
+  drawRect(
+    margin + colWidth + 6,
+    cursorY,
+    colWidth,
+    detailsHeight,
+    brand.white,
+    brand.border
+  ); // Minimal gap
   doc.save();
   doc.fillColor(brand.dark).fontSize(8).font("Helvetica-Bold"); // Small font
   doc.text("TO", margin + colWidth + 10, cursorY + 3); // Minimal spacing
-  
+
   doc.fillColor(brand.dark).fontSize(7).font("Helvetica-Bold"); // Small font
   doc.text(to?.name || "Customer", margin + colWidth + 10, cursorY + 12); // Minimal spacing
-  
+
   doc.fillColor(brand.gray).fontSize(5).font("Helvetica"); // Very small font
   doc.text(to?.email || "", margin + colWidth + 10, cursorY + 20); // Minimal spacing
   doc.text(to?.phone || "", margin + colWidth + 10, cursorY + 26); // Minimal spacing
   doc.text(to?.address || "", margin + colWidth + 10, cursorY + 32); // Minimal spacing
-  doc.text(`${to?.city || ""} ${to?.state || ""} ${to?.pincode || ""}`, margin + colWidth + 10, cursorY + 38); // Minimal spacing
+  doc.text(
+    `${to?.city || ""} ${to?.state || ""} ${to?.pincode || ""}`,
+    margin + colWidth + 10,
+    cursorY + 38
+  ); // Minimal spacing
   doc.restore();
 
   cursorY += detailsHeight + 6; // Minimal spacing
@@ -737,12 +768,19 @@ function generateOrderPDF(doc, from, to, items, orderDetails) {
   // Items Table - ultra compact design
   const tableHeaderHeight = 15; // Very small header
   const rowHeight = 12; // Very small rows
-  
+
   // Table header
-  drawRect(margin, cursorY, contentWidth, tableHeaderHeight, brand.primary, brand.primary);
+  drawRect(
+    margin,
+    cursorY,
+    contentWidth,
+    tableHeaderHeight,
+    brand.primary,
+    brand.primary
+  );
   doc.save();
   doc.fillColor(brand.white).fontSize(6).font("Helvetica-Bold"); // Very small font
-  
+
   // Column positions - ultra compact layout
   const columns = [
     { x: margin + 2, width: 18, text: "S.No", align: "center" }, // Very small widths
@@ -751,11 +789,14 @@ function generateOrderPDF(doc, from, to, items, orderDetails) {
     { x: margin + 165, width: 40, text: "Actual", align: "right" },
     { x: margin + 210, width: 40, text: "Offer", align: "right" },
     { x: margin + 255, width: 20, text: "Qty", align: "center" },
-    { x: margin + 280, width: 50, text: "Amount", align: "right" }
+    { x: margin + 280, width: 50, text: "Amount", align: "right" },
   ];
 
-  columns.forEach(col => {
-    doc.text(col.text, col.x, cursorY + 3, { width: col.width, align: col.align }); // Minimal spacing
+  columns.forEach((col) => {
+    doc.text(col.text, col.x, cursorY + 3, {
+      width: col.width,
+      align: col.align,
+    }); // Minimal spacing
   });
   doc.restore();
 
@@ -765,105 +806,156 @@ function generateOrderPDF(doc, from, to, items, orderDetails) {
   (items || []).forEach((item, index) => {
     const isEven = index % 2 === 0;
     const rowColor = isEven ? brand.white : brand.lighter;
-    
+
     drawRect(margin, cursorY, contentWidth, rowHeight, rowColor, brand.border);
-    
+
     doc.save();
     doc.fillColor(brand.dark).fontSize(5).font("Helvetica"); // Very small font
-    
-    const itemName = item?.product || item?.name || 'Unknown Item';
+
+    const itemName = item?.product || item?.name || "Unknown Item";
     const itemQuantity = item?.quantity || 0;
     const itemPrice = item?.offerPrice || item?.price || 0;
     const actualPrice = item?.actualPrice || item?.price || 0;
     const amount = itemPrice * itemQuantity; // Calculate amount correctly
-    
+
     // Truncate long product names
-    const truncatedName = itemName.length > 10 ? itemName.substring(0, 8) + '..' : itemName; // Very short
-    
+    const truncatedName =
+      itemName.length > 10 ? itemName.substring(0, 8) + ".." : itemName; // Very short
+
     // S.No
-    doc.text(String(index + 1), columns[0].x, cursorY + 2, { width: columns[0].width, align: columns[0].align }); // Minimal spacing
-    
+    doc.text(String(index + 1), columns[0].x, cursorY + 2, {
+      width: columns[0].width,
+      align: columns[0].align,
+    }); // Minimal spacing
+
     // Category
-    doc.text(item?.category || "", columns[1].x, cursorY + 2, { width: columns[1].width, align: columns[1].align }); // Minimal spacing
-    
+    doc.text(item?.category || "", columns[1].x, cursorY + 2, {
+      width: columns[1].width,
+      align: columns[1].align,
+    }); // Minimal spacing
+
     // Product
-    doc.text(truncatedName, columns[2].x, cursorY + 2, { width: columns[2].width, align: columns[2].align }); // Minimal spacing
-    
+    doc.text(truncatedName, columns[2].x, cursorY + 2, {
+      width: columns[2].width,
+      align: columns[2].align,
+    }); // Minimal spacing
+
     // Actual Price
-    doc.text(formatCurrency(actualPrice), columns[3].x, cursorY + 2, { width: columns[3].width, align: columns[3].align }); // Minimal spacing
-    
+    doc.text(formatCurrency(actualPrice), columns[3].x, cursorY + 2, {
+      width: columns[3].width,
+      align: columns[3].align,
+    }); // Minimal spacing
+
     // Offer Price
-    doc.text(formatCurrency(itemPrice), columns[4].x, cursorY + 2, { width: columns[4].width, align: columns[4].align }); // Minimal spacing
-    
+    doc.text(formatCurrency(itemPrice), columns[4].x, cursorY + 2, {
+      width: columns[4].width,
+      align: columns[4].align,
+    }); // Minimal spacing
+
     // Quantity
-    doc.text(String(itemQuantity), columns[5].x, cursorY + 2, { width: columns[5].width, align: columns[5].align }); // Minimal spacing
-    
+    doc.text(String(itemQuantity), columns[5].x, cursorY + 2, {
+      width: columns[5].width,
+      align: columns[5].align,
+    }); // Minimal spacing
+
     // Amount (quantity × price)
-    doc.text(formatCurrency(amount), columns[6].x, cursorY + 2, { width: columns[6].width, align: columns[6].align }); // Minimal spacing
-    
+    doc.text(formatCurrency(amount), columns[6].x, cursorY + 2, {
+      width: columns[6].width,
+      align: columns[6].align,
+    }); // Minimal spacing
+
     doc.restore();
-    
+
     cursorY += rowHeight;
   });
 
   // Order Summary Section - ultra compact design
   cursorY += 4; // Minimal spacing
   const summaryHeight = 35; // Very small height
-  
-  drawRect(margin, cursorY, contentWidth, summaryHeight, brand.white, brand.border);
-  
+
+  drawRect(
+    margin,
+    cursorY,
+    contentWidth,
+    summaryHeight,
+    brand.white,
+    brand.border
+  );
+
   doc.save();
   doc.fillColor(brand.dark).fontSize(8).font("Helvetica-Bold"); // Small font
   doc.text("ORDER SUMMARY", margin + 6, cursorY + 4); // Minimal spacing
-  
+
   // Calculate totals correctly
-  const totalProducts = (items || []).reduce((sum, item) => sum + (item?.quantity || 0), 0);
+  const totalProducts = (items || []).reduce(
+    (sum, item) => sum + (item?.quantity || 0),
+    0
+  );
   const totalAmount = (items || []).reduce((sum, item) => {
     const price = item?.offerPrice || item?.price || 0;
     const qty = item?.quantity || 0;
-    return sum + (price * qty); // Calculate total correctly
+    return sum + price * qty; // Calculate total correctly
   }, 0);
-  
+
   // Summary details (left side)
   doc.fillColor(brand.dark).fontSize(6).font("Helvetica"); // Very small font
   doc.text(`Total Products: ${totalProducts}`, margin + 6, cursorY + 14); // Minimal spacing
-  doc.text(`Subtotal: ${formatCurrency(totalAmount)}`, margin + 6, cursorY + 22); // Minimal spacing
+  doc.text(
+    `Subtotal: ${formatCurrency(totalAmount)}`,
+    margin + 6,
+    cursorY + 22
+  ); // Minimal spacing
   doc.fillColor(brand.warning).fontSize(5).font("Helvetica"); // Very small font
   doc.text("Minimum order value: ₹3,000", margin + 6, cursorY + 30); // Minimal spacing
-  
+
   // Total amount box (right side)
   const totalBoxWidth = 70; // Very small width
   const totalBoxHeight = 25; // Very small height
   const totalBoxX = margin + contentWidth - totalBoxWidth - 6; // Minimal spacing
   const totalBoxY = cursorY + 8; // Minimal spacing
-  
-  drawRect(totalBoxX, totalBoxY, totalBoxWidth, totalBoxHeight, brand.white, brand.border);
-  
+
+  drawRect(
+    totalBoxX,
+    totalBoxY,
+    totalBoxWidth,
+    totalBoxHeight,
+    brand.white,
+    brand.border
+  );
+
   doc.fillColor(brand.dark).fontSize(7).font("Helvetica-Bold"); // Small font
-  doc.text(`TOTAL: ${formatCurrency(totalAmount)}`, totalBoxX, totalBoxY + 6, { // Minimal spacing
-    width: totalBoxWidth, 
-    align: "center" 
+  doc.text(`TOTAL: ${formatCurrency(totalAmount)}`, totalBoxX, totalBoxY + 6, {
+    // Minimal spacing
+    width: totalBoxWidth,
+    align: "center",
   });
-  
+
   doc.restore();
 
   // Footer Section - ultra compact design
   cursorY = pageHeight - margin - 20; // Very small footer
-  
+
   drawRect(margin, cursorY, contentWidth, 15, brand.primary, brand.primary); // Very small height
-  
+
   doc.save();
   doc.fillColor(brand.white).fontSize(6).font("Helvetica-Bold"); // Very small font
-  doc.text("Thank you for choosing Prithivik Crackers!", margin, cursorY + 3, { // Minimal spacing
-    width: contentWidth, 
-    align: "center" 
+  doc.text("Thank you for choosing Prithivik Crackers!", margin, cursorY + 3, {
+    // Minimal spacing
+    width: contentWidth,
+    align: "center",
   });
-  
+
   doc.fillColor(brand.white).fontSize(5).font("Helvetica"); // Very small font
-  doc.text("For any queries, contact us at info@prithivikcrackers.com", margin, cursorY + 9, { // Minimal spacing
-    width: contentWidth, 
-    align: "center" 
-  });
+  doc.text(
+    "For any queries, contact us at info@prithivikcrackers.com",
+    margin,
+    cursorY + 9,
+    {
+      // Minimal spacing
+      width: contentWidth,
+      align: "center",
+    }
+  );
   doc.restore();
 }
 
@@ -871,7 +963,7 @@ function generateOrderPDF(doc, from, to, items, orderDetails) {
 app.post("/send-order-pdf", async (req, res) => {
   try {
     console.log("Received request body:", JSON.stringify(req.body, null, 2));
-    
+
     const { toEmail, customer, items, totals } = req.body;
 
     // Validate required fields
@@ -882,7 +974,9 @@ app.post("/send-order-pdf", async (req, res) => {
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       console.log("Missing or empty items array");
-      return res.status(400).json({ error: "Items array is required and must not be empty" });
+      return res
+        .status(400)
+        .json({ error: "Items array is required and must not be empty" });
     }
 
     // Create orderDetails from totals
@@ -890,7 +984,7 @@ app.post("/send-order-pdf", async (req, res) => {
       orderId: `ORD-${Date.now()}`,
       date: new Date().toLocaleDateString(),
       status: "Pending",
-      total: totals?.finalTotal || totals?.total || 0
+      total: totals?.finalTotal || totals?.total || 0,
     };
 
     // Create from object (company details)
@@ -898,7 +992,7 @@ app.post("/send-order-pdf", async (req, res) => {
       name: "Prithivik Crackers",
       email: "info@prithivikcrackers.com",
       phone: "+91-9876543210",
-      address: "Sivakasi, Tamil Nadu"
+      address: "Sivakasi, Tamil Nadu",
     };
 
     // Log email configuration status (but don't fail)
@@ -917,10 +1011,11 @@ app.post("/send-order-pdf", async (req, res) => {
       try {
         if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
           console.log("Email configuration missing - skipping email send");
-          return res.status(200).json({ 
-            message: "Order processed successfully! Email not sent due to missing configuration.",
+          return res.status(200).json({
+            message:
+              "Order processed successfully! Email not sent due to missing configuration.",
             orderId: orderDetails.orderId,
-            pdfGenerated: true
+            pdfGenerated: true,
           });
         }
 
@@ -955,21 +1050,21 @@ app.post("/send-order-pdf", async (req, res) => {
         // Send both emails
         await Promise.all([
           transporter.sendMail(customerMailOptions),
-          transporter.sendMail(companyMailOptions)
+          transporter.sendMail(companyMailOptions),
         ]);
 
-        res.status(200).json({ 
-          message: "Order confirmation sent to customer and company!", 
-          orderId: orderDetails.orderId 
+        res.status(200).json({
+          message: "Order confirmation sent to customer and company!",
+          orderId: orderDetails.orderId,
         });
       } catch (emailError) {
         console.error("Email sending failed:", emailError.message);
         // Still return success since PDF was generated
-        res.status(200).json({ 
+        res.status(200).json({
           message: "Order processed successfully! Email failed to send.",
           orderId: orderDetails.orderId,
           pdfGenerated: true,
-          emailError: emailError.message
+          emailError: emailError.message,
         });
       }
     });
@@ -990,7 +1085,9 @@ app.post("/generate-order-pdf", async (req, res) => {
 
     // Validate required fields
     if (!items || !Array.isArray(items) || items.length === 0) {
-      return res.status(400).json({ error: "Items array is required and must not be empty" });
+      return res
+        .status(400)
+        .json({ error: "Items array is required and must not be empty" });
     }
 
     // Create orderDetails from totals
@@ -998,15 +1095,15 @@ app.post("/generate-order-pdf", async (req, res) => {
       orderId: `ORD-${Date.now()}`,
       date: new Date().toLocaleDateString(),
       status: "Pending",
-      total: totals?.finalTotal || totals?.total || 0
+      total: totals?.finalTotal || totals?.total || 0,
     };
 
     // Create from object (company details)
     const from = {
       name: "Prithivik Crackers",
-      email: "info@prithivikcrackers.com",
-      phone: "+91-9876543210",
-      address: "Sivakasi, Tamil Nadu"
+      email: "prithivikcrackers@gmail.com",
+      phone: "+91 7904648644",
+      address: "Sivakasi, Tamil Nadu",
     };
 
     const doc = new PDFDocument({ margin: 50 });
@@ -1031,7 +1128,10 @@ app.post("/generate-order-pdf", async (req, res) => {
 
 // Test route
 app.get("/test", (req, res) => {
-  res.json({ message: "Server is running!", timestamp: new Date().toISOString() });
+  res.json({
+    message: "Server is running!",
+    timestamp: new Date().toISOString(),
+  });
 });
 
 const PORT = process.env.PORT || 5000;
