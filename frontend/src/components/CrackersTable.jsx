@@ -23,6 +23,7 @@ const CrackersTable = ({ data, cart, onAdd, onUpdate }) => {
           <tr>
             <th className="py-2 px-4 border">S.No</th>
             <th className="py-2 px-4 border">Category</th>
+            <th className="py-2 px-4 border">Image</th>
             <th className="py-2 px-4 border">Product</th>
             <th className="py-2 px-4 border">Actual Price</th>
             <th className="py-2 px-4 border">Offer Price</th>
@@ -35,13 +36,12 @@ const CrackersTable = ({ data, cart, onAdd, onUpdate }) => {
             <React.Fragment key={category}>
               {/* Category title row */}
               <tr className="bg-[#e9f5ff] text-lg font-semibold text-[#28587B]">
-                <td colSpan="7" className="py-2 text-center border-y">
+                <td colSpan="8" className="py-2 text-center border-y">
                   {category}
                 </td>
               </tr>
 
               {grouped[category].map((item, index) => {
-                // quantity from cart (cart stores normalized id)
                 const quantity = getQuantity(item);
                 const offerPrice =
                   parseFloat(
@@ -67,6 +67,13 @@ const CrackersTable = ({ data, cart, onAdd, onUpdate }) => {
                       {item.category ?? "Uncategorized"}
                     </td>
                     <td className="py-2 px-4 border">
+                      <img
+                        src={item.image}
+                        alt={item.product}
+                        className="h-12 w-12 object-contain mx-auto rounded"
+                      />
+                    </td>
+                    <td className="py-2 px-4 border">
                       {item.product ?? item.name}
                     </td>
                     <td className="py-2 px-4 border text-gray-500 line-through">
@@ -75,7 +82,6 @@ const CrackersTable = ({ data, cart, onAdd, onUpdate }) => {
                     <td className="py-2 px-4 border font-semibold text-green-600">
                       ₹{offerPrice.toFixed(2)}
                     </td>
-
                     <td className="py-2 px-4 border flex items-center justify-center gap-2">
                       <button
                         onClick={() =>
@@ -96,7 +102,6 @@ const CrackersTable = ({ data, cart, onAdd, onUpdate }) => {
                         +
                       </button>
                     </td>
-
                     <td className="py-2 px-4 border">
                       ₹{(offerPrice * quantity).toFixed(2)}
                     </td>
