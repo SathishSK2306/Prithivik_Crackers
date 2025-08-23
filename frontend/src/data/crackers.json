@@ -6,7 +6,7 @@
     "actual_price": 79,
     "offer_price": 14,
     "quantity": "1 Pkt - 5 Pieces",
-    "image": "../../public/crackers_images/IMG-20250823-WA0026.jpg"
+    "image": "/IMG-20250823-WA0026.jpg"
   },
   {
     "s_no": 2,
@@ -15,7 +15,7 @@
     "actual_price": 113,
     "offer_price": 8,
     "quantity": "1 Pkt - 5 Pieces",
-    "image": "../../public/crackers_images/IMG-20250823-WA0027.jpg"
+    "image": "/IMG-20250823-WA0027.jpg"
   },
   {
     "s_no": 3,
@@ -24,7 +24,7 @@
     "actual_price": 100,
     "offer_price": 20,
     "quantity": "1 Pkt - 5 Pieces",
-    "image": "../../public/crackers_images/IMG-20250823-WA0028.jpg"
+    "image": "/IMG-20250823-WA0028.jpg"
   },
   {
     "s_no": 4,
@@ -41,7 +41,8 @@
     "category": "Sound Crackers",
     "actual_price": 250,
     "offer_price": 50,
-    "quantity": "1 Pkt - 5 Pieces"
+    "quantity": "1 Pkt - 5 Pieces",
+    "image": "https://i.pinimg.com/736x/b6/9c/25/b69c2580a6c3b0252915bee2561c7f89.jpg"
   },
   {
     "s_no": 6,
