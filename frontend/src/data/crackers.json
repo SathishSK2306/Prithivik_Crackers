@@ -1,21 +1,21 @@
 [
   {
     "s_no": 1,
-    "product": "3 1/2 Lakshmi/Chotta/Flash",
-    "category": "Sound Crackers",
-    "actual_price": 79,
-    "offer_price": 14,
-    "quantity": "1 Pkt - 5 Pieces",
-    "image": "/3 12 LakshmiChottaFlash.jpg"
-  },
-  {
-    "s_no": 2,
     "product": "2 3/4\" Kuruvi",
     "category": "Sound Crackers",
-    "actual_price": 113,
+    "actual_price": 40,
     "offer_price": 8,
     "quantity": "1 Pkt - 5 Pieces",
     "image": "/2 34 Kuruvi.jpg"
+  },
+  {
+    "s_no": 2,
+    "product": "3 1/2 Lakshmi/Chotta/Flash",
+    "category": "Sound Crackers",
+    "actual_price": 75,
+    "offer_price": 15,
+    "quantity": "1 Pkt - 5 Pieces",
+    "image": "/3 12 LakshmiChottaFlash.jpg"
   },
   {
     "s_no": 3,
@@ -28,7 +28,7 @@
   },
   {
     "s_no": 4,
-    "product": "4\" Deluxe Lakshmi/Dead Pool",
+    "product": "4\" Deluxe Lakshmi/Dead Pool (8 Ply)",
     "category": "Sound Crackers",
     "actual_price": 125,
     "offer_price": 25,
@@ -37,19 +37,19 @@
   },
   {
     "s_no": 5,
-    "product": "5\" Gold Ben 10 Deluxe",
+    "product": "5\" Gold Ben 10 Deluxe (10 Ply)",
     "category": "Sound Crackers",
-    "actual_price": 250,
-    "offer_price": 50,
+    "actual_price": 235,
+    "offer_price": 47,
     "quantity": "1 Pkt - 5 Pieces",
     "image": "/5 Gold Ben 10 Deluxe.jpg"
   },
   {
     "s_no": 6,
-    "product": "6\" Thanos / Shiva",
+    "product": "6\" Thanos / Shiva (12 Ply)",
     "category": "Sound Crackers",
-    "actual_price": 275,
-    "offer_price": 55,
+    "actual_price": 300,
+    "offer_price": 60,
     "quantity": "1 Pkt - 5 Pieces",
     "image": "/6 Thanos  Shiva 1.jpg"
   },
@@ -73,42 +73,33 @@
   },
   {
     "s_no": 9,
-    "product": "2 Sound Crackers",
-    "category": "Sound Crackers",
-    "actual_price": 245,
-    "offer_price": 49,
-    "quantity": "1 Pkt - 5 Pieces",
-    "image": "/2-SOUND-CRACKERS.webp"
-  },
-  {
-    "s_no": 10,
     "product": "Paper Bomb 1/4 Kg",
     "category": "Sound Crackers",
     "actual_price": 285,
     "offer_price": 57,
-    "quantity": "1 Box- 1 Piece",
+    "quantity": "1 Box - 1 Piece",
     "image": "/paper bomb.jpg"
   },
   {
-    "s_no": 11,
+    "s_no": 10,
     "product": "Paper Bomb 1/2 Kg",
     "category": "Sound Crackers",
     "actual_price": 565,
     "offer_price": 113,
-    "quantity": "1 Box- 1 Piece",
+    "quantity": "1 Box - 1 Piece",
     "image": "/paper bomb.jpg"
   },
   {
-    "s_no": 12,
+    "s_no": 11,
     "product": "Paper Bomb 1Kg",
     "category": "Sound Crackers",
     "actual_price": 1125,
     "offer_price": 225,
-    "quantity": "1 Box- 1 Piece",
+    "quantity": "1 Box - 1 Piece",
     "image": "/paper bomb.jpg"
   },
   {
-    "s_no": 13,
+    "s_no": 12,
     "product": "Ground Chakkar Big (10 Pcs)",
     "category": "Chakkars",
     "actual_price": 175,
@@ -117,7 +108,7 @@
     "image": "/Ground Chakkar Big (10 Pcs).jpg"
   },
   {
-    "s_no": 14,
+    "s_no": 13,
     "product": "Ground Chakkar Big (25 Pcs)",
     "category": "Chakkars",
     "actual_price": 425,
@@ -126,16 +117,16 @@
     "image": "/Ground Chakkar Big (25 Pcs).jpg"
   },
   {
-    "s_no": 15,
+    "s_no": 14,
     "product": "Ground Chakkar Asoka",
     "category": "Chakkars",
-    "actual_price": 206,
+    "actual_price": 295,
     "offer_price": 59,
     "quantity": "1 Box - 10 Pieces",
     "image": "/Ground Chakkar Asoka.jpg"
   },
   {
-    "s_no": 16,
+    "s_no": 15,
     "product": "Ground Chakkar Special",
     "category": "Chakkars",
     "actual_price": 395,
@@ -144,7 +135,7 @@
     "image": "/Ground Chakkar Special.jpg"
   },
   {
-    "s_no": 17,
+    "s_no": 16,
     "product": "Ground Chakkar Deluxe",
     "category": "Chakkars",
     "actual_price": 695,
@@ -153,7 +144,7 @@
     "image": "/Ground Chakkar Deluxe.jpg"
   },
   {
-    "s_no": 18,
+    "s_no": 17,
     "product": "Ground Chakkar Orbit Spinner",
     "category": "Chakkars",
     "actual_price": 795,
@@ -1106,7 +1097,6 @@
     "quantity": "1 Box- 2 Pieces",
     "image": "/Emu Egg (2 Pcs).jpg"
   },
-
   {
     "s_no": 125,
     "product": "Family Pack 2000",
