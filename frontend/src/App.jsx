@@ -7,6 +7,7 @@ import WhatsAppSticky from "./components/WhatsAppSticky";
 import BackgroundFireworks from "./components/FireworkCanvas";
 import crackersData from "./data/crackers.json";
 import Banner from "./components/Banner";
+import Footer from "./components/Footer";
 
 const toNumber = (v) => {
   if (v == null) return 0;
@@ -121,7 +122,7 @@ const App = () => {
             <div className="flex justify-end my-4 px-4">
               <a
                 href="/Prithivik_Crackers_Price_List_2025.pdf"
-                download="Prithivik_Crackers_Price_List_2025.pdf"
+                download="/Prithivik_Crackers_Price_List_2025.pdf"
                 className="bg-[#DCEAF5] text-[#1A3D63] font-semibold px-5 py-3 rounded shadow hover:bg-[#c9dfef] transition-all duration-300"
               >
                 Download Price List
@@ -189,6 +190,8 @@ const App = () => {
             </div>
 
             <WhatsAppSticky />
+            {/* Footer */}
+            <Footer />
           </>
         )}
       </div>

@@ -17,7 +17,9 @@ const ContactForm = () => {
       setName("");
       setEmail("");
     } catch (err) {
-      alert(err?.response?.data?.message || err?.message || "Failed to send email");
+      alert(
+        err?.response?.data?.message || err?.message || "Failed to send email"
+      );
     } finally {
       setIsSending(false);
     }
@@ -73,7 +75,10 @@ const ContactForm = () => {
             </a>
           </p>
 
-          <form onSubmit={handleSubmit} className="w-full max-w-sm grid grid-cols-1 gap-3 text-left">
+          <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-sm grid grid-cols-1 gap-3 text-left"
+          >
             <input
               className="border p-3 rounded"
               placeholder="Your Name"
